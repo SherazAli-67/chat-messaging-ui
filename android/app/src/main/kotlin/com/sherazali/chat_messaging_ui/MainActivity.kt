@@ -1,0 +1,5 @@
+package com.sherazali.chat_messaging_ui
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
