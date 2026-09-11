@@ -5,7 +5,7 @@ import 'package:chat_messaging_ui/core/models/new_action_item.dart';
 import 'package:chat_messaging_ui/core/models/story.dart';
 
 class AppData {
-  static const userName = 'Saad Shaikh';
+  static const userName = 'Sheraz Ali';
   static const unreadCount = 6;
 
   static String get greeting => '${StringConst.greetingPrefix}$userName';
@@ -61,6 +61,26 @@ class AppData {
     ChatPreview(
       name: 'Dixie Haag',
       avatarAsset: AppIcons.avatarDixie,
+      lastMessage: 'Figma ipsum component variant main',
+      time: '19:45',
+      unreadCount: 2,
+    ),
+    ChatPreview(
+      name: 'Rafael Mante',
+      avatarAsset: AppIcons.avatarRafael,
+      lastMessage: 'Figma ipsum component variant main',
+      time: '19:45',
+    ),
+    ChatPreview(
+      name: 'Katherine Bernhard',
+      avatarAsset: AppIcons.avatarKatherine,
+      lastMessage: 'Figma',
+      time: '19:45',
+      showReadReceipt: true,
+    ),
+    ChatPreview(
+      name: 'Terrence Lemke',
+      avatarAsset: AppIcons.avatarTerrence,
       lastMessage: 'Figma ipsum component variant main',
       time: '19:45',
       unreadCount: 2,

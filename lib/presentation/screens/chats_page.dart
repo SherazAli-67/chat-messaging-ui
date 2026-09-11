@@ -23,7 +23,7 @@ class ChatsPage extends StatelessWidget {
           spacing: 28,
           children: [
             Padding(
-              padding: .symmetric(horizontal: 20),
+              padding: .only(left: 20, right: 20, top: 24),
               child: _buildGreetingHeader(),
             ),
             _buildStoriesRow(),

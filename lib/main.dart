@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: StringConst.appTitle,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: .light,
         fontFamily: StringConst.appFontFamily,

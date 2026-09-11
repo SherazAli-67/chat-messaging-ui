@@ -38,7 +38,14 @@ class _MainMenuPageState extends State<MainMenuPage> {
     );
   }
 
+  void _goBranch(int index) {
+    setState(() => _isNewSheetOpen = false);
+    widget.navigationShell.goBranch(index);
+  }
+
   Widget _buildBottomNav() {
+    final currentIndex = widget.navigationShell.currentIndex;
+
     return Material(
       color: AppColors.whiteColor,
       child: Container(
@@ -51,11 +58,16 @@ class _MainMenuPageState extends State<MainMenuPage> {
           mainAxisAlignment: .spaceBetween,
           children: [
             GestureDetector(
-              onTap: () {
-                setState(() => _isNewSheetOpen = false);
-                widget.navigationShell.goBranch(0);
-              },
-              child: SvgPicture.asset(AppIcons.icHome, width: 24, height: 24),
+              onTap: () => _goBranch(0),
+              child: SvgPicture.asset(
+                AppIcons.icHome,
+                width: 24,
+                height: 24,
+                colorFilter: .mode(
+                  currentIndex == 0 ? AppColors.neutral1000Color : AppColors.neutral600Color,
+                  .srcIn,
+                ),
+              ),
             ),
             GestureDetector(
               onTap: () => setState(() => _isNewSheetOpen = !_isNewSheetOpen),
@@ -65,6 +77,15 @@ class _MainMenuPageState extends State<MainMenuPage> {
                   color: _isNewSheetOpen ? AppColors.whiteColor : AppColors.neutral1000Color,
                   borderRadius: .circular(1000),
                   border: _isNewSheetOpen ? .all(color: AppColors.neutral200Color) : null,
+                  boxShadow: _isNewSheetOpen
+                      ? [
+                          BoxShadow(
+                            color: AppColors.neutral600Color.withValues(alpha: 0.12),
+                            blurRadius: 12,
+                            offset: const Offset(0, 2),
+                          ),
+                        ]
+                      : null,
                 ),
                 child: _isNewSheetOpen
                     ? Text(StringConst.cancel, style: AppTextStyles.cancelButton)
@@ -79,11 +100,16 @@ class _MainMenuPageState extends State<MainMenuPage> {
               ),
             ),
             GestureDetector(
-              onTap: () {
-                setState(() => _isNewSheetOpen = false);
-                widget.navigationShell.goBranch(1);
-              },
-              child: SvgPicture.asset(AppIcons.icProfile, width: 24, height: 24),
+              onTap: () => _goBranch(1),
+              child: SvgPicture.asset(
+                AppIcons.icProfile,
+                width: 24,
+                height: 24,
+                colorFilter: .mode(
+                  currentIndex == 1 ? AppColors.neutral1000Color : AppColors.neutral600Color,
+                  .srcIn,
+                ),
+              ),
             ),
           ],
         ),
@@ -107,6 +133,8 @@ class _MainMenuPageState extends State<MainMenuPage> {
           bottom: 74 + MediaQuery.paddingOf(context).bottom,
           child: Material(
             color: AppColors.whiteColor,
+            elevation: 8,
+            shadowColor: AppColors.neutral600Color.withValues(alpha: 0.2),
             borderRadius: .circular(16),
             child: Padding(
               padding: .symmetric(horizontal: 20, vertical: 24),
@@ -131,21 +159,25 @@ class _MainMenuPageState extends State<MainMenuPage> {
   }
 
   Widget _buildNewActionRow({required NewActionItem action}) {
-    return Row(
-      spacing: 12,
-      children: [
-        SvgPicture.asset(action.iconAsset, width: 20, height: 20),
-        Expanded(
-          child: Column(
-            spacing: 4,
-            crossAxisAlignment: .start,
-            children: [
-              Text(action.title, style: AppTextStyles.actionSheetTitle),
-              Text(action.subtitle, style: AppTextStyles.actionSheetSubtitle),
-            ],
+    return GestureDetector(
+      behavior: .opaque,
+      onTap: () => setState(() => _isNewSheetOpen = false),
+      child: Row(
+        spacing: 12,
+        children: [
+          SvgPicture.asset(action.iconAsset, width: 20, height: 20),
+          Expanded(
+            child: Column(
+              spacing: 4,
+              crossAxisAlignment: .start,
+              children: [
+                Text(action.title, style: AppTextStyles.actionSheetTitle),
+                Text(action.subtitle, style: AppTextStyles.actionSheetSubtitle),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
