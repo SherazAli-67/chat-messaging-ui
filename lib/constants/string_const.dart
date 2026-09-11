@@ -2,6 +2,7 @@ class StringConst {
   static const appTitle = 'Chats App';
   static const appFontFamily = 'FilsonPro';
   static const chats = 'Chats';
+  static const profile = 'Profile';
   static const newLabel = 'New';
   static const cancel = 'Cancel';
   static const addStory = 'Add Story';
