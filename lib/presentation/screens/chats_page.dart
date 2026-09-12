@@ -54,8 +54,12 @@ class ChatsPage extends StatelessWidget {
           spacing: 4,
           crossAxisAlignment: .start,
           children: [
-            Text(AppData.greeting, style: AppTextStyles.greeting),
-            Text(AppData.unreadMessagesLabel, style: AppTextStyles.unreadSubtitle),
+            //greeting, greeting
+            Text(AppData.greeting, style: AppTextStyles.greeting,),
+            // Text(AppData.greeting, style: AppTextStyles.greeting),
+            //unreadMessagesLabel, unreadSubtitle
+            Text(AppData.unreadMessagesLabel, style: AppTextStyles.unreadSubtitle,)
+            // Text(AppData.unreadMessagesLabel, style: AppTextStyles.unreadSubtitle),
           ],
         ),
         Stack(
@@ -69,7 +73,8 @@ class ChatsPage extends StatelessWidget {
                 shape: .circle,
               ),
               alignment: .center,
-              child: SvgPicture.asset(AppIcons.icAddUser, width: 16, height: 16),
+              //icAddUser, 16
+              child: SvgPicture.asset(AppIcons.icAddUser)
             ),
             Positioned(
               top: 2,
@@ -117,8 +122,12 @@ class ChatsPage extends StatelessWidget {
             child: Stack(
               alignment: .center,
               children: [
+                //icAddStoryRing-png, 50
                 Image.asset(AppIcons.icAddStoryRing, width: 50, height: 50),
-                SvgPicture.asset(AppIcons.icAdd, width: 20, height: 20),
+                // Image.asset(AppIcons.icAddStoryRing, width: 50, height: 50),
+                //icAdd, 20
+                SvgPicture.asset(AppIcons.icAdd, width: 20,)
+                // SvgPicture.asset(AppIcons.icAdd, width: 20, height: 20),
               ],
             ),
           ),
@@ -141,15 +150,13 @@ class ChatsPage extends StatelessWidget {
         spacing: 8,
         children: [
           ClipOval(
-            child: Image.asset(story.avatarAsset, width: 50, height: 50, fit: .cover),
+
+            //avatarAsset, 50, cover
+            child: Image.asset(story.avatarAsset, height: 50, fit: .cover),
           ),
-          Text(
-            story.name,
-            style: AppTextStyles.storyName,
-            textAlign: .center,
-            maxLines: 1,
-            overflow: .ellipsis,
-          ),
+          //story.name, storyName, .center, maxLines: 1, .ellipsis
+          Text(story.name, style: AppTextStyles.storyName, maxLines: 1, overflow: .ellipsis,)
+
         ],
       ),
     );
@@ -159,8 +166,10 @@ class ChatsPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: .spaceBetween,
       children: [
-        Text(StringConst.chats, style: AppTextStyles.sectionTitle),
-        SvgPicture.asset(AppIcons.icMore, width: 20, height: 4),
+        //chats, sectionTitle
+        Text(StringConst.chats, style: AppTextStyles.sectionTitle,),
+        //icMore, width:20, height:4
+        SvgPicture.asset(AppIcons.icMore, height: 4, width: 20)
       ],
     );
   }
@@ -172,8 +181,9 @@ class ChatsPage extends StatelessWidget {
       spacing: 14,
       crossAxisAlignment: .start,
       children: [
+        //chat.avatarAsset, 50, cover
         ClipOval(
-          child: Image.asset(chat.avatarAsset, width: 50, height: 50, fit: .cover),
+          child: Image.asset(chat.avatarAsset, height: 50,)
         ),
         Expanded(
           child: Padding(
@@ -182,19 +192,17 @@ class ChatsPage extends StatelessWidget {
               spacing: 5,
               crossAxisAlignment: .start,
               children: [
-                Text(
-                  chat.name,
-                  style: AppTextStyles.chatName,
-                  maxLines: 1,
-                  overflow: .ellipsis,
-                ),
+                //chat.name, chatName, maxLines:1, ellipsis
+                Text(chat.name, style: AppTextStyles.chatName, maxLines: 1, overflow: .ellipsis),
                 Row(
                   spacing: 6,
                   children: [
                     if (chat.showReadReceipt)
-                      SvgPicture.asset(AppIcons.icTickDouble, width: 16, height: 16),
+                      //icTickDouble, 16
+                      SvgPicture.asset(AppIcons.icTickDouble),
                     Expanded(
                       child: Text(
+                        //chat.lastMessage
                         chat.lastMessage,
                         style: hasUnread ? AppTextStyles.chatPreviewUnread : AppTextStyles.chatPreview,
                         maxLines: 1,
@@ -213,7 +221,7 @@ class ChatsPage extends StatelessWidget {
             spacing: 4,
             crossAxisAlignment: .end,
             children: [
-              Text(chat.time, style: AppTextStyles.chatTime),
+              Text(chat.time, style: AppTextStyles.chatTime,),
               if (hasUnread)
                 Container(
                   width: 22,

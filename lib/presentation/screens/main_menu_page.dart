@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:chat_messaging_ui/constants/string_const.dart';
 import 'package:chat_messaging_ui/core/app_colors.dart';
 import 'package:chat_messaging_ui/core/app_data.dart';
@@ -32,7 +31,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
           left: 0,
           right: 0,
           bottom: 0,
-          child: _buildBottomNav(),
+
+          //buildBottomNav
+          child: _buildBottomNav()
         ),
       ],
     );
@@ -44,8 +45,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
   }
 
   Widget _buildBottomNav() {
-    final currentIndex = widget.navigationShell.currentIndex;
-
     return Material(
       color: AppColors.whiteColor,
       child: Container(
@@ -57,18 +56,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
         child: Row(
           mainAxisAlignment: .spaceBetween,
           children: [
-            GestureDetector(
-              onTap: () => _goBranch(0),
-              child: SvgPicture.asset(
-                AppIcons.icHome,
-                width: 24,
-                height: 24,
-                colorFilter: .mode(
-                  currentIndex == 0 ? AppColors.neutral1000Color : AppColors.neutral600Color,
-                  .srcIn,
-                ),
-              ),
-            ),
+            //icHome
+            _buildBottomNavItem(currentIndex: widget.navigationShell.currentIndex, index: 0, icon: AppIcons.icHome),
+            // _buildBottomNavItem(currentIndex: widget.navigationShell.currentIndex, index: 0, icon: AppIcons.icHome),
             GestureDetector(
               onTap: () => setState(() => _isNewSheetOpen = !_isNewSheetOpen),
               child: Container(
@@ -77,8 +67,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                   color: _isNewSheetOpen ? AppColors.whiteColor : AppColors.neutral1000Color,
                   borderRadius: .circular(1000),
                   border: _isNewSheetOpen ? .all(color: AppColors.neutral200Color) : null,
-                  boxShadow: _isNewSheetOpen
-                      ? [
+                  boxShadow: _isNewSheetOpen ? [
                           BoxShadow(
                             color: AppColors.neutral600Color.withValues(alpha: 0.12),
                             blurRadius: 12,
@@ -93,26 +82,34 @@ class _MainMenuPageState extends State<MainMenuPage> {
                         spacing: 4,
                         mainAxisSize: .min,
                         children: [
+                          //icPlus
                           SvgPicture.asset(AppIcons.icPlus, width: 20, height: 20),
-                          Text(StringConst.newLabel, style: AppTextStyles.newButton),
+                          // SvgPicture.asset(AppIcons.icPlus, width: 20, height: 20),
+
+                          //newLabel, newButton
+                          Text(StringConst.newLabel, style: AppTextStyles.newButton,)
+                          // Text(StringConst.newLabel, style: AppTextStyles.newButton),
                         ],
                       ),
               ),
             ),
-            GestureDetector(
-              onTap: () => _goBranch(1),
-              child: SvgPicture.asset(
-                AppIcons.icProfile,
-                width: 24,
-                height: 24,
-                colorFilter: .mode(
-                  currentIndex == 1 ? AppColors.neutral1000Color : AppColors.neutral600Color,
-                  .srcIn,
-                ),
-              ),
-            ),
+            //icProfile
+            _buildBottomNavItem(currentIndex: widget.navigationShell.currentIndex, index: 1, icon: AppIcons.icProfile)
+            // _buildBottomNavItem(currentIndex: widget.navigationShell.currentIndex, index: 1, icon: AppIcons.icProfile),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildBottomNavItem({required int currentIndex, required int index, required String icon}) {
+    return GestureDetector(
+      onTap: () => _goBranch(index),
+      child: SvgPicture.asset(
+        icon,
+        width: 24,
+        height: 24,
+        colorFilter: .mode(index == currentIndex ? AppColors.neutral1000Color : AppColors.neutral600Color, .srcIn,),
       ),
     );
   }
